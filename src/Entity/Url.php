@@ -27,6 +27,9 @@ class Url
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\Column]
+    private int $accesos = 0;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,6 +79,25 @@ class Url
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getAccesos(): ?int
+    {
+        return $this->accesos;
+    }
+
+    public function setAccesos(int $accesos): static
+    {
+        $this->accesos = $accesos;
+
+        return $this;
+    }
+
+    public function incrementarAccesos()
+    {
+        $this->accesos++;
 
         return $this;
     }

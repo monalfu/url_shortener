@@ -86,6 +86,9 @@ class UrlController extends AbstractController
             
             $url = $urlRepository->findOneBy(['url_corta' => $urlCorta]);
             if ($url) {
+                $url->incrementarAccesos();
+                $entityManager = $this->managerRegistry->getManager();
+                $entityManager->flush();
                 header('Location:' . $url->getUrlReal());
                 die();
             } else {
