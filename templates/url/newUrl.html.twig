@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crea tu Url corta{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+    <div class="mb-3 text-end px-3">
+        <p>Bienvenido {{ app.user.userIdentifier }}</p> 
+        <a href="{{ path('app_logout') }}">Cerrar sesión</a>
+    </div>
+    {% endif %}
+    
+    <section class="vh-100" style="background-color: #508bfc;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    
+                        {% if form_errors(form) %}
+                        <div class="alert alert-danger">
+                            {{ form_errors(form) }}
+                        </div>
+                    {% endif %}
+
+                        <form method="post" class="card-body p-5 text-center" action="{{ path('url_shortener_new') }}">
+                            <h3 class="mb-5">Acortador de Urls</h3>
+                
+                            <div class="row">
+                                <div class="form-outline mb-4 col">
+                                    {{ form_row(form.urlReal) }}
+                                </div>
+                            </div>
+
+                            {{ form_row(form._token) }}
+
+                            <div class="row">
+                                <div class="form-outline mb-4 col">
+                                    {{ form_row(form.urlCorta) }}
+                                </div>
+                            </div>
+        
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">Acortar Url</button>
+        
+                            <hr class="my-4">
+
+                            {% for message in app.flashes('success') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+<section class="vh-100" style="background-color: #508bfc;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <form method="post" class="card-body p-5 text-center">
+  
+                        {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+                        <h3 class="mb-5">Inicia sesión</h3>
+            
+                        <div class="form-outline mb-4">
+                            <input class="form-control form-control-lg" type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+                            <label class="form-label" for="inputUsername">Username</label>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <input class="form-control form-control-lg" type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                            <label class="form-label" for="inputPassword">Password</label>
+                        </div>
+  
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+  
+                        <hr class="my-4">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

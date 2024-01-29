@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Página de ejemplo de redirección{% endblock %}
+
+{% block body %}
+
+<h1>Prueba</h1>
+
+<p>{{ app.request.getUri() }}</p>
+<p> {{ urlReal }}</p>
+<a href="{{ urlReal }}">{{ urlReal }}</a>
+{% endblock %}
