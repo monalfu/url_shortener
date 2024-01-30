@@ -4,21 +4,22 @@ home:
 app_login:
     path: /login/
     controller: App\Controller\SecurityController::login
+app_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
 url_shortener_new:
     path: /url/newurl
     controller: App\Controller\UrlController::newUrlShortener
 buscador_url_real:
-    path: /buscarUrlReal
+    path: /buscarUrlRealarUrls
     controller: App\Controller\UrlController::buscarUrlOriginal
-url_corta:
+redireccion_url_real:
     path: /{urlCorta}
-    controller: App\Controller\UrlController::redirectToOriginalUrl
-show_url_real:
-    path: /{urlReal}
-    controller: App\Controller\UrlController::showOriginalUrl
-app_logout:
-    path: /logout
-    controller: App\Controller\SecurityController::logout
+    controller: App\Controller\UrlController::redirectUrlReal
+listado_urls:
+    path: /urls/list
+    controller: App\Controller\UserController::listarUrls
+
 
 
 

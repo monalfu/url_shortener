@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\UrlRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UrlRepository;
 
 #[ORM\Entity(repositoryClass: UrlRepository::class)]
 class Url
@@ -23,12 +23,12 @@ class Url
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $creation_date = null;
 
-    #[ORM\ManyToOne(inversedBy: 'urls')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
-
     #[ORM\Column]
-    private int $accesos = 0;
+    private $accesos = 0;
+
+    #[ORM\ManyToOne(inversedBy: 'urls', targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
 
     public function getId(): ?int
     {
@@ -71,18 +71,6 @@ class Url
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): static
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     public function getAccesos(): ?int
     {
         return $this->accesos;
@@ -98,6 +86,18 @@ class Url
     public function incrementarAccesos()
     {
         $this->accesos++;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

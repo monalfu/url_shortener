@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Url;
+use App\Entity\User;
 use App\Form\UrlType;
 use App\Form\UrlShortType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,6 +21,7 @@ class UrlController extends AbstractController
 {
     public function __construct(private \Doctrine\Persistence\ManagerRegistry $managerRegistry)
     {
+        
     }
 
     #[Route('/newUrl', name: 'url_shortener_new', methods: ['GET', 'POST'])]
@@ -56,47 +59,15 @@ class UrlController extends AbstractController
                 $entityManager->persist($urlEntity);
                 $entityManager->flush();
             }
-                        
             $this->addFlash(
                 'success', 
                 'Su url corta ha sido guardada exitosamente, es la siguiente: https://localhost:8000/' . $urlCortaGenerada);
             return $this->redirectToRoute('url_shortener_new');
         }
     
-
         return $this->render('url/newUrl.html.twig', [
             'url' => $url,
             'form' => $form,
         ]);
-    }
-
-    #[Route('/buscarUrlReal', name: 'buscador_url_real', methods: ['POST'])]
-    public function buscarUrlOriginal(Request $request)
-    {
-        $form = $this->createForm(UrlShortType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-
-            // Lógica para buscar en la base de datos utilizando los datos del formulario
-            $urlCorta = $data->getUrlCorta();
-            $entityManager = $this->managerRegistry->getManager();
-            $urlRepository = $entityManager->getRepository(Url::class);
-            
-            $url = $urlRepository->findOneBy(['url_corta' => $urlCorta]);
-            if ($url) {
-                $url->incrementarAccesos();
-                $entityManager = $this->managerRegistry->getManager();
-                $entityManager->flush();
-                header('Location:' . $url->getUrlReal());
-                die();
-            } else {
-                $urlReal = "No se encontró la URL Original para la URL Corta proporcionada.";
-            }   
-        }
-            return $this->render('url/conseguirUrlReal.html.twig', [
-                'form' => $form,
-            ]);
     }
 }
