@@ -17,19 +17,20 @@ Este proyecto ha sido construido con Symfony 7. Permite acortar URL largas a una
 
 ## Puesta en marcha
 
-PRIMERO CLONA EL REPOSITORIO:
+1- PRIMERO CLONA EL REPOSITORIO:
 https://github.com/monalfu/url_shortener.git
 
 
-CREA UNA BASE DE DATOS. Deberás crear en la base de datos un usuario con una contraseña. Puedes usar el archivo sql prueba_profe.sql
+2- CREA UNA BASE DE DATOS. Deberás crear en la base de datos un usuario con una contraseña. Puedes usar el archivo sql prueba_profe.sql
 
 $ php bin/console doctrine:database:create
 
 
-CONFIGURA EN EL ARCHIVO .env TU BASE DE DATOS CON TU USUARIO Y CONTRASEÑA
+3- CONFIGURA EN EL ARCHIVO .env TU BASE DE DATOS CON TU USUARIO Y CONTRASEÑA
 
+DATABASE_URL="mysqli://usuar:contraseña@localhost:3306/prueba_profe"
 
-REALIZA LA MIGRACIÓN:
+4- REALIZA LA MIGRACIÓN:
 
 $ php bin/console doctrine:migrations:migrate
 
