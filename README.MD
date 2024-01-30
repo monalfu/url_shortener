@@ -5,6 +5,7 @@ Este proyecto ha sido construido con Symfony 7. Permite acortar URL largas de en
 ## Características
 
 * los usuarios registrados pueden crear URLs cortas y pueden personalizarlas si quieren.
+* cada vez que se accede a una url se contabiliza y queda registrado en la base de datos.
 
 ## Construido con
 
@@ -41,5 +42,6 @@ Si clicas al botón se generará una url corta aleatoria de números y letras y 
 Para verificar, si introduces en el navegador: https://localhost:8000/clases_particulares  te redirigirá a la url real.
 
 ## Comentarios
-El listado no está, porque me ha surgido un error que no me ha dado tiempo de resolver para poder presentar. Y ha hecho que me retrase sin poder incluir el CRUD para así poder administrar las URLs creadas por el usuario.
+El listado no está, porque me ha surgido un error que no me ha dado tiempo de resolver para poder presentar. Y ha hecho que me retrase sin poder incluir el CRUD para así poder administrar las URLs creadas por el usuario. El contador de accesos funciona, pero no es visible por el error pendiente de solucionar en el listado de urls. La autenticación se realiza mediante el login y crsf token.
+Los test se realizaron de manera manual.
 
