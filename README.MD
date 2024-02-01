@@ -18,8 +18,9 @@ Este proyecto ha sido construido con Symfony 7. Permite acortar URL largas de en
 
 ## Puesta en marcha
 
-1- PRIMERO CLONA EL REPOSITORIO:
+1- PRIMERO CLONA EL REPOSITORIO Y INSTALA COMPOSER:
 https://github.com/monalfu/url_shortener.git
+$ composer install
 
 
 2- CREA UNA BASE DE DATOS. Deberás crear en la base de datos un usuario con una contraseña. Puedes usar el archivo sql prueba_profe.sql
