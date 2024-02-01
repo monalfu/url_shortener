@@ -19,7 +19,9 @@ Este proyecto ha sido construido con Symfony 7. Permite acortar URL largas de en
 ## Puesta en marcha
 
 1- PRIMERO CLONA EL REPOSITORIO Y INSTALA COMPOSER:
+
 https://github.com/monalfu/url_shortener.git
+
 $ composer install
 
 
